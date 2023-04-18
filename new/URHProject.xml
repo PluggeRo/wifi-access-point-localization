@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<UniversalRadioHackerProject description="" collapse_project_tabs="0" modulation_was_edited="0" broadcast_address_hex="ffff">
+  <modulators>
+    <modulator carrier_freq_hz="40000" carrier_amplitude="1" carrier_phase_deg="0" samples_per_symbol="100" name="Modulator" gauss_bt="0.5" gauss_filter_width="1" sample_rate="None" modulation_type="ASK" index="0" parameters="0.0,100.0" bits_per_symbol="1"/>
+  </modulators>
+  <device_conf>
+    <apply_dc_correction>True</apply_dc_correction>
+    <bandwidth>1000000.0</bandwidth>
+    <bias_tee_enabled>False</bias_tee_enabled>
+    <freq_correction>1</freq_correction>
+    <frequency>433920000.0</frequency>
+    <gain>20</gain>
+    <name>RTL-TCP</name>
+    <num_sending_repeats>0</num_sending_repeats>
+    <rx_antenna_index>-1</rx_antenna_index>
+    <rx_baseband_gain>16</rx_baseband_gain>
+    <rx_gain>49</rx_gain>
+    <rx_if_gain>20</rx_if_gain>
+    <sample_rate>1000000.0</sample_rate>
+  </device_conf>
+  <simulator_rx_conf/>
+  <simulator_tx_conf/>
+  <group name="New Group" id="0"/>
+  <protocol>
+    <decodings>
+      <decoding>'Non Return To Zero (NRZ)', </decoding>
+      <decoding>'Non Return To Zero + Invert', 'Invert', </decoding>
+      <decoding>'Manchester I', 'Edge Trigger', </decoding>
+      <decoding>'Manchester II', 'Edge Trigger', 'Invert', </decoding>
+      <decoding>'Differential Manchester', 'Edge Trigger', 'Differential Encoding', </decoding>
+    </decodings>
+    <participants>
+      <participant name="Alice" shortname="A" address_hex="" color_index="0" id="d28a1d8f-f9fa-4452-b1aa-9d814c1173aa" relative_rssi="0" simulate="0"/>
+      <participant name="Bob" shortname="B" address_hex="" color_index="1" id="30655e8e-ecbb-436c-8ecd-00ae20ee5537" relative_rssi="1" simulate="0"/>
+    </participants>
+    <messages/>
+    <message_types>
+      <message_type name="Default" id="b5a3d1d7-732d-4d6d-bde0-d4c8411603aa" assigned_by_ruleset="0" assigned_by_logic_analyzer="0">
+        <ruleset mode="0"/>
+      </message_type>
+    </message_types>
+  </protocol>
+  <simulator_config>
+    <items/>
+  </simulator_config>
+</UniversalRadioHackerProject>
