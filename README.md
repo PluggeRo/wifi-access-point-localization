@@ -6,8 +6,8 @@ I have tried different approaches to receive valid and fast data from the access
 
 1. Creating a gnuradio flowchart to receive the dbm value from the access point - did not work with hackrf one
 2. Analyze the dbm value from the access point using a wifi adapter in monitor mode and:
-  1. the python lib: pywifi - got valid values but really slow
-  2. the python lib: scapy - got valid values with a frequency of around 1Hz
+- the python lib: pywifi - got valid values but really slow
+- the python lib: scapy - got valid values with a frequency of around 1Hz
 
 
 ## Setting up the hardware
