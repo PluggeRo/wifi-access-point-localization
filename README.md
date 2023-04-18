@@ -32,6 +32,12 @@ Every plugin and lib for the python script is installed in the virtual environme
 So you should be good after downloading the repo.
 
 ### Test the scapy script
+1. Activate the virtual environment in VSCode:
+``` zsh
+py -3 -m venv .venv
+.venv\scripts\activate
+```
+2. Execute the script in the venv:
 ``` zsh
 sudo python analyzer_scapy.py
 ```
