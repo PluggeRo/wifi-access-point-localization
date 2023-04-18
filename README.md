@@ -24,7 +24,7 @@ iwconfig
 ```
 3. Bring your interface into monitor mode (e.g. for interface named `wlan0`):
 ``` zsh
-sudo ifconfig wlan0 down && sudo iwconfig wlan0 mode monitor &&	sudo ifconfig wlan0 up
+sudo ifconfig wlan0 down && sudo iwconfig wlan0 mode monitor && sudo ifconfig wlan0 up
 ```
 
 ## Setting up the software
