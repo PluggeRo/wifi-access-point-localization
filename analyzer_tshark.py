@@ -1,21 +1,25 @@
+import subprocess
 import time
 from scapy.all import *
 from scapy.layers.dot11 import Dot11Beacon, Dot11ProbeResp, Dot11, RadioTap, Dot11Elt
 
 access_points = {}
 
-def handle_packet(packet):
-    if packet.haslayer(Dot11Beacon) or packet.haslayer(Dot11ProbeResp):
-        bssid = packet[Dot11].addr2
-        ssid = packet[Dot11Elt].info.decode()
-        signal = packet[RadioTap].dBm_AntSignal
-
-        if bssid not in access_points:
-            access_points[bssid] = (ssid, signal)
+def handle_output(output):
+    lines = output.decode().split("\n")
+    for line in lines:
+        if "Beacon" in line or "Probe Response" in line:
+            parts = line.split()
+            bssid = parts[2]
+            ssid = parts[3]
+            signal = parts[4]
+            if bssid not in access_points:
+                access_points[bssid] = (ssid, signal)
 
 def scan_wifi():
-    iface = "wlan0"  # Change this to your wireless interface name
-    sniff(iface=iface, timeout=1, prn=handle_packet, store=False)
+    command = ["tshark", "-i", "wlan0", "-Y", "wlan.fc.type_subtype eq 8 or wlan.fc.type_subtype eq 5", "-T", "fields", "-e", "wlan.sa", "-e", "wlan.ssid", "-e", "radiotap.dbm_antsignal"]
+    result = subprocess.run(command, stdout=subprocess.PIPE)
+    handle_output(result.stdout)
     return access_points
 
 def choose_access_point(access_points):
