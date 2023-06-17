@@ -1,7 +1,7 @@
 import serial
 
 # Set the port and baudrate in advance
-SERIAL_PORT = '/dev/ttyUSB0'
+SERIAL_PORT = "/dev/ttyUSB0"
 BAUDRATE = 9600
 
 ser = None

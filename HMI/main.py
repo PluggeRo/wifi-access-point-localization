@@ -2,6 +2,7 @@ import tkinter as tk
 from MainPage import PageOne
 from ControlPage import PageTwo
 
+
 class MainApplication(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)

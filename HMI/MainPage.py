@@ -36,7 +36,7 @@ class PageOne(tk.Frame):
 
     def scan_wifi_networks(self):
         # Scan Wi-Fi networks and parse the ESSIDs
-        essids = ['ESSID1', 'ESSID2', 'ESSID3']
+        essids = ["ESSID1", "ESSID2", "ESSID3"]
 
         essid_dropdown = tk.OptionMenu(self, self.selected_essid, *essids)
         essid_dropdown.config(bg="Grey", width=25)
@@ -47,53 +47,3 @@ class PageOne(tk.Frame):
         ssid = self.selected_essid.get()
         print(ssid)
 
-    # def scan_wifi_networks(self):
-    #     # Airport command to scan for Wi-Fi networks
-    #     airport_cmd = ["/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport","-s"]
-    #
-    #     # Scan Wi-Fi networks and parse the ESSIDs
-    #     scan_output = subprocess.check_output(airport_cmd).decode("utf-8")
-    #     essids = [line.split()[0] for line in scan_output.splitlines()[1:]]
-    #
-    #     essid_dropdown = tk.OptionMenu(self, self.selected_essid, *essids)
-    #     essid_dropdown.config(bg="Grey")
-    #     essid_dropdown.place(x=220, y=200)
-
-    # def scan_wifi_networks(self):
-    #     # Command to scan for Wi-Fi networks using netsh on Windows
-    #     netsh_cmd = ['netsh', 'wlan', 'show', 'network', 'mode=Bssid']
-    #
-    #     # Scan Wi-Fi networks and parse the SSIDs
-    #     scan_output = subprocess.check_output(netsh_cmd).decode('latin-1')
-    #     ssids = re.findall(r'SSID\s+\d+\s+:\s+(.*)', scan_output)
-    #
-    #     essid_dropdown = tk.OptionMenu(self, self.selected_essid, *ssids)
-    #     essid_dropdown.config(bg="Grey")
-    #     essid_dropdown.place(x=220, y=200)
-
-    # def scan_wifi_networks(self):
-    #     # Command to scan for Wi-Fi networks using iwlist on Linux
-    #     iwlist_cmd = ['iwlist', 'wlan0', 'scan']
-    #
-    #     # Scan Wi-Fi networks and parse the SSIDs
-    #     scan_output = subprocess.check_output(iwlist_cmd).decode('utf-8')
-    #     ssids = re.findall(r'ESSID:"(.*?)"', scan_output)
-    #
-    #     essid_dropdown = tk.OptionMenu(self, self.selected_essid, *ssids)
-    #     essid_dropdown.config(bg="Grey")
-    #     essid_dropdown.place(x=220, y=200)
-
-    # def scan_wifi_networks(self):
-    #     # Scapy command to scan for Wi-Fi networks
-    #     wifi_networks = []
-    #     for channel in range(1, 14):
-    #         wifi_packets = sniff(iface='enp0s3', timeout=5, count=20, prn=lambda x:x.sprintf("{Dot11Beacon:%Dot11.addr3%\n%Dot11Beacon.info%}"))
-    #         for packet in wifi_packets:
-    #             if packet.haslayer(Dot11Beacon):
-    #                 ssid = packet[Dot11Elt].info.decode()
-    #                 if ssid not in wifi_networks:
-    #                     wifi_networks.append(ssid)
-    #
-    #     essid_dropdown = tk.OptionMenu(self, self.selected_essid, *wifi_networks, value=wifi_networks[0])
-    #     essid_dropdown.config(bg="Grey")
-    #     essid_dropdown.place(x=220, y=200)
