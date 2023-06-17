@@ -107,6 +107,8 @@ class PageTwo(tk.Frame):
 
     def start_ref_get_angle(self):
         # Save current angle to var
+        sercom.open_serial_port() # Open serial connection
+        time.sleep(2)
         start_time = time.time()  # Get actual time
         return_value = None
         while return_value not in [2, 0]:
@@ -115,7 +117,7 @@ class PageTwo(tk.Frame):
                 break
             return_value = sercom.start_reference_run()
             if return_value == "2":
-                angle = "-"
+                angle = "0"
                 self.angle_label = tk.Label(self, text=f"Current angle: {angle}")
             elif return_value == 0:
                 print("Reference run failed!")

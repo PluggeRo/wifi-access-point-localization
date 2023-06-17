@@ -1,7 +1,7 @@
 import serial
 
 # Set the port and baudrate in advance
-SERIAL_PORT = "/dev/ttyUSB0"
+SERIAL_PORT = "/dev/ttyACM0"
 BAUDRATE = 9600
 
 ser = None
@@ -19,14 +19,13 @@ def open_serial_port():
         return False  # Opening failed
 
 
-def close_serial_port():
-    global ser
+def close_serial_port(ser):
     ser.flush()
     ser.timeout(1)
     ser.close()
 
 
-def start_reference_run():
+def start_reference_run(ser):
     ser.write("G28 \n".encode())
     ser.timeout(1)
     while True:
