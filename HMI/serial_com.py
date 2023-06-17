@@ -4,8 +4,6 @@ import serial
 SERIAL_PORT = "/dev/ttyACM0"
 BAUDRATE = 9600
 
-ser = None
-
 
 def open_serial_port():
     global ser
@@ -13,10 +11,10 @@ def open_serial_port():
         ser = serial.Serial(SERIAL_PORT, BAUDRATE)
         ser.timeout = 2
         print("Connected to controller")
-        return True  # Opening succeeded
+        return ser  # Opening succeeded
     except serial.SerialException:
         print("FAILED to connect!")
-        return False  # Opening failed
+        return None  # Opening failed
 
 
 def close_serial_port(ser):
@@ -26,14 +24,15 @@ def close_serial_port(ser):
 
 
 def start_reference_run(ser):
-    ser.write("G28 \n".encode())
-    ser.timeout(1)
+    ser.write("G28".encode())
+    #ser.timeout(1)
     while True:
         if ser.in_waiting:
-            received_data = ser.readline().decode().strip()
-            if received_data == "2":
+            received_data = ser.read()#line().decode().strip()
+            print(received_data)
+            if received_data == "2k":
                 return received_data
-            elif received_data == "0":
+            elif received_data == "0k":
                 print("Reference run failed")
                 return received_data
 

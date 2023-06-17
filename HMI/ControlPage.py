@@ -1,6 +1,7 @@
 import time
 import tkinter as tk
 import serial_com as sercom
+import serial
 
 
 class PageTwo(tk.Frame):
@@ -107,20 +108,21 @@ class PageTwo(tk.Frame):
 
     def start_ref_get_angle(self):
         # Save current angle to var
-        sercom.open_serial_port() # Open serial connection
+        ser = sercom.open_serial_port() # Open serial connection
         time.sleep(2)
         start_time = time.time()  # Get actual time
         return_value = None
-        while return_value not in [2, 0]:
-            if time.time() - start_time > 30:  # Check if 30 sec are passed
-                print("Timeout reached. Exiting loop.")
-                break
-            return_value = sercom.start_reference_run()
-            if return_value == "2":
-                angle = "0"
-                self.angle_label = tk.Label(self, text=f"Current angle: {angle}")
-            elif return_value == 0:
-                print("Reference run failed!")
-            else:
-                print("Waiting for return...")
-                time.sleep(5)
+        #while return_value not in [2, 0]:
+        if time.time() - start_time > 30:  # Check if 30 sec are passed
+            print("Timeout reached. Exiting loop.")
+            #break
+        testser = serial.Serial("/dev/ttyACM0", 9600)
+        return_value = sercom.start_reference_run(testser)
+        if return_value == "2":
+            angle = "0"
+            self.angle_label = tk.Label(self, text=f"Current angle: {angle}")
+        elif return_value == 0:
+            print("Reference run failed!")
+        else:
+            print("Waiting for return...")
+            time.sleep(5)
