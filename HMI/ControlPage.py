@@ -70,6 +70,7 @@ class PageTwo(tk.Frame):
                 break
             return_value = sercom.pointer_vertical_degree
             if return_value == "2":
+                angle = self.angle
                 self.angle_label = tk.Label(self, text=f"Current angle: {read_angle}") # Apply angle to label
             elif return_value == 0:
                 print("Movement failed!")
@@ -103,9 +104,6 @@ class PageTwo(tk.Frame):
     def right_to_serial(self):
         # Combine button touch with step-width
         sercom.pointer_horizontal_degree(+self.angle_scale)
-
-    def turn_servo_to_pos(self):
-
 
     def start_ref_get_angle(self):
         # Save current angle to var
